@@ -1,0 +1,11 @@
+.neutral {
+    background-color: #ccc;
+}
+
+.increase {
+    background-color: #0c0;
+}
+
+.decrease {
+    background-color: #c00;
+}
