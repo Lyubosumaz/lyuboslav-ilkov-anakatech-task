@@ -1,3 +1,7 @@
+:root {
+    --main-bg-light: #f0f0f0;
+}
+
 *,
 *::before,
 *::after {
@@ -15,4 +19,5 @@ html {
 
 body {
     font: inherit;
+    background: var(--main-bg-light);
 }

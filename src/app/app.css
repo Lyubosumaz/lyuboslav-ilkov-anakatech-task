@@ -1,11 +1,58 @@
-.neutral {
-    background-color: #ccc;
+.position-mid {
+    margin-top: 2em;
+    text-align: center;
 }
 
-.increase {
-    background-color: #0c0;
+.forex-table {
+    margin: 2em auto;
+    border-collapse: collapse;
 }
 
-.decrease {
-    background-color: #c00;
+.forex-table thead {
+    text-align: left;
+    color: #fff;
+    background-color: #1089ff;
+}
+
+.forex-table tr:first-of-type th {
+    font-size: 1.4em;
+    padding: 0.4em 0 0.2em 0;
+    text-align: center;
+}
+
+.forex-table th,
+.forex-table td {
+    padding: 0.75em 1.5em;
+}
+
+.forex-table tbody tr {
+    border-bottom: 0.2em solid var(--main-bg-light);
+    background: #fff;
+}
+
+.forex-table tbody tr:hover {
+    background: #ddd;
+}
+
+.forex-table td span {
+    padding: 0.4em;
+    border-radius: 0.4em;
+}
+
+.forex-table .neutral,
+.forex-table .increase,
+.forex-table .decrease {
+    color: #fff;
+}
+
+.forex-table .neutral {
+    background: #bbb;
+}
+
+.forex-table .increase {
+    background: #0c0;
+}
+
+.forex-table .decrease {
+    background: #c00;
 }

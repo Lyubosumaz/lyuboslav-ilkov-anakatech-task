@@ -5,7 +5,6 @@ import "./app.css";
 
 export const App = () => {
     const [data, setData] = useState({});
-    const isDataPresent = typeof data.base === "string" && Array.isArray(data.rates) && data.rates.length > 0;
 
     useEffect(() => {
         let mockFetchData = {};
@@ -39,8 +38,8 @@ export const App = () => {
     const incOrDecData = (arg) => {
         setData(prevState => {
             return {
-                base: prevState.base,
-                rates: prevState.rates.map((item) => {
+                base: prevState && prevState.base,
+                rates: (prevState && Array.isArray(prevState.rates)) && prevState.rates.map((item) => {
                     if (arg === "increase") return {
                         currency: item.currency,
                         value: item.value + 0.0001,
@@ -60,27 +59,33 @@ export const App = () => {
     if (data === undefined) {
         return (
             <main>
-                <div>Still loading...</div>
+                <div className="position-mid">Still loading...</div>
             </main>
         );
     }
 
     return (
         <main>
-            {isDataPresent
+            {typeof data.base === "string" && Array.isArray(data.rates) && data.rates.length > 0
                 ?
-                <table>
+                <table className="forex-table">
                     <thead>
                         <tr>
-                            <th colSpan="2">The table header</th>
+                            <th colSpan="3">Dynamic Forex Rates</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Exchange Target</th>
+                            <th>Current Rate</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.rates.map((rate, index) => {
                             const fixValue = rate.value < 1.0001 ? 1.0001 : rate.value.toFixed(4);
                             return (
-                                <tr key={index}>
-                                    <td><span>{`${data.base}${rate.currency}`}</span></td>
+                                <tr key={index + 1}>
+                                    <td>{index + 1}</td>
+                                    <td>{`${data.base}${rate.currency}`}</td>
                                     <td><span className={rate.rateColor}>{fixValue.toString()}</span></td>
                                 </tr>
                             );
@@ -88,7 +93,7 @@ export const App = () => {
                     </tbody>
                 </table>
                 :
-                <div>Data fetching failed...</div>
+                <div className="position-mid">Data fetching failed...</div>
             }
         </main>
     );
