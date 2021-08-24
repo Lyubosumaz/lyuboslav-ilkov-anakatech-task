@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import currencies from '../currencies.json';
-import "./app.css";
+import './app.css';
 
 export const App = () => {
     const [data, setData] = useState({});
@@ -18,14 +18,14 @@ export const App = () => {
     }, []);
 
     const createTickerForTimePeriod = (minutes) => {
-        let keyWord = "increase";
+        let keyWord = 'increase';
 
         const incOrDecEveryFiveSeconds = setInterval(() => {
             incOrDecData(keyWord);
         }, 1000 * 5);
 
         const oneMinutes = setInterval(() => {
-            keyWord = keyWord === "increase" ? "decrease" : "increase";
+            keyWord = keyWord === 'increase' ? 'decrease' : 'increase';
         }, 1000 * 60);
 
         const selectedMinutes = setTimeout(() => {
@@ -40,12 +40,12 @@ export const App = () => {
             return {
                 base: prevState && prevState.base,
                 rates: (prevState && Array.isArray(prevState.rates)) && prevState.rates.map((item) => {
-                    if (arg === "increase") return {
+                    if (arg === 'increase') return {
                         currency: item.currency,
                         value: item.value + 0.0001,
                         rateColor: (item.value + 0.0001 < 1.0001) ? 'neutral' : 'increase',
                     };
-                    if (arg === "decrease") return {
+                    if (arg === 'decrease') return {
                         currency: item.currency,
                         value: item.value - 0.0001,
                         rateColor: (item.value - 0.0001 < 1.0001) ? 'neutral' : 'decrease',
@@ -59,14 +59,14 @@ export const App = () => {
     if (data === undefined) {
         return (
             <main>
-                <p className="error-msg">Still loading...</p>
+                <p className='error-msg'>Still loading...</p>
             </main>
         );
     }
 
     return (
         <main>
-            {typeof data.base === "string" && Array.isArray(data.rates) && data.rates.length > 0
+            {typeof data.base === 'string' && Array.isArray(data.rates) && data.rates.length > 0
                 ?
                 <table className="forex-table">
                     <thead>
