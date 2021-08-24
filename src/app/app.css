@@ -1,11 +1,16 @@
-.position-mid {
-    margin-top: 2em;
-    text-align: center;
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.error-msg {
+    padding: 1.5rem;
 }
 
 .forex-table {
-    margin: 2em auto;
+    padding: 1.5rem;
     border-collapse: collapse;
+    display: inline-block;
 }
 
 .forex-table thead {

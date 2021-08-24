@@ -14,7 +14,7 @@ export const App = () => {
         });
 
         setData(mockFetchData);
-        createTickerForTimePeriod(5);
+        createTickerForTimePeriod(5); // current period 5 minutes
     }, []);
 
     const createTickerForTimePeriod = (minutes) => {
@@ -28,10 +28,10 @@ export const App = () => {
             keyWord = keyWord === "increase" ? "decrease" : "increase";
         }, 1000 * 60);
 
-        const fiveMinutes = setTimeout(() => {
+        const selectedMinutes = setTimeout(() => {
             clearInterval(incOrDecEveryFiveSeconds);
             clearInterval(oneMinutes);
-            clearTimeout(fiveMinutes);
+            clearTimeout(selectedMinutes);
         }, 1000 * 60 * minutes);
     }
 
@@ -59,7 +59,7 @@ export const App = () => {
     if (data === undefined) {
         return (
             <main>
-                <div className="position-mid">Still loading...</div>
+                <p className="error-msg">Still loading...</p>
             </main>
         );
     }
@@ -83,7 +83,7 @@ export const App = () => {
                         {data.rates.map((rate, index) => {
                             const fixValue = rate.value < 1.0001 ? 1.0001 : rate.value.toFixed(4);
                             return (
-                                <tr key={index + 1}>
+                                <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{`${data.base}${rate.currency}`}</td>
                                     <td><span className={rate.rateColor}>{fixValue.toString()}</span></td>
@@ -93,7 +93,7 @@ export const App = () => {
                     </tbody>
                 </table>
                 :
-                <div className="position-mid">Data fetching failed...</div>
+                <p className="error-msg">Data fetching failed...</p>
             }
         </main>
     );
