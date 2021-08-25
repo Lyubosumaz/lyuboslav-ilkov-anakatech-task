@@ -11,7 +11,7 @@ npm install
 Run development mode
 
 ```
-npm run start
+npm start
 ```
 
 Open browser
