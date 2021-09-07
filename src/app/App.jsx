@@ -44,13 +44,15 @@ export const App = () => {
                     let rateColor = 'neutral';
 
                     if (arg === 'increase') {
-                        rateValue = item.value + 0.0001;
-                        rateColor = (rateValue < 1.0001) ? 'neutral' : 'increase';
+                        rateValue += 0.0001;
+                        rateColor = 'increase';
                     }
                     else if (arg === 'decrease') {
-                        rateValue = item.value - 0.0001;
-                        rateColor = (rateValue < 1.0001) ? 'neutral' : 'decrease';
+                        rateValue -= 0.0001;
+                        rateColor = 'decrease';
                     }
+
+                    if (rateValue < 1.0001) rateColor = 'neutral';
 
                     return {
                         currency: item.currency,
