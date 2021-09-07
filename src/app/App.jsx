@@ -4,7 +4,7 @@ import currencies from '../currencies.json';
 import './app.css';
 
 export const App = () => {
-    const [data, setData] = useState({});
+    const [data, setData] = useState(null);
 
     useEffect(() => {
         let mockFetchData = {};
@@ -62,7 +62,7 @@ export const App = () => {
         });
     }
 
-    if (data === undefined) {
+    if (data === null) {
         return (
             <main>
                 <p className='error-msg'>Still loading...</p>
