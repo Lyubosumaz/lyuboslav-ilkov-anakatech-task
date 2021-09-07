@@ -7,7 +7,7 @@ export const App = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        let mockFetchData = {};
+        const mockFetchData = {};
         mockFetchData.base = currencies.base.toString();
         mockFetchData.rates = Object.entries(currencies.rates).map(([key, value]) => {
             return { currency: key, value, rateColor: 'neutral' };
@@ -92,7 +92,7 @@ export const App = () => {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{`${data.base}${rate.currency}`}</td>
-                                    <td><span className={rate.rateColor}>{fixValue.toString()}</span></td>
+                                    <td><span className={rate.rateColor}>{fixValue}</span></td>
                                 </tr>
                             );
                         })}
