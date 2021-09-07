@@ -40,17 +40,23 @@ export const App = () => {
             return {
                 base: prevState && prevState.base,
                 rates: (prevState && Array.isArray(prevState.rates)) && prevState.rates.map((item) => {
-                    if (arg === 'increase') return {
+                    let rateValue = item.value;
+                    let rateColor = 'neutral';
+
+                    if (arg === 'increase') {
+                        rateValue = item.value + 0.0001;
+                        rateColor = (rateValue < 1.0001) ? 'neutral' : 'increase';
+                    }
+                    else if (arg === 'decrease') {
+                        rateValue = item.value - 0.0001;
+                        rateColor = (rateValue < 1.0001) ? 'neutral' : 'decrease';
+                    }
+
+                    return {
                         currency: item.currency,
-                        value: item.value + 0.0001,
-                        rateColor: (item.value + 0.0001 < 1.0001) ? 'neutral' : 'increase',
+                        value: rateValue,
+                        rateColor,
                     };
-                    if (arg === 'decrease') return {
-                        currency: item.currency,
-                        value: item.value - 0.0001,
-                        rateColor: (item.value - 0.0001 < 1.0001) ? 'neutral' : 'decrease',
-                    };
-                    return { currency: item.currency, value: item.value, rateColor: 'neutral' };
                 }),
             }
         });
